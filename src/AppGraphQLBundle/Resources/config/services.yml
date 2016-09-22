@@ -1,0 +1,4 @@
+services:
+    app_graph_ql.resolver.post:
+        class: AppGraphQLBundle\Resolver\PostResolver
+        autowire: true
