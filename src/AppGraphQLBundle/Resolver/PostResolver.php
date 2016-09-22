@@ -50,8 +50,7 @@ class PostResolver
         foreach ($postList as $post) {
             $data[] = [
                 'title' => $post->getTitle(),
-                'summary' => $post->getSummary(),
-                'toto' => 'titi'
+                'summary' => $post->getSummary()
             ];
         }
 
