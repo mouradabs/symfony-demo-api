@@ -5,10 +5,10 @@
 
 namespace AppGraphQLBundle\GraphQL;
 
+use AppGraphQLBundle\GraphQL\Type\UserType;
 use Youshido\GraphQL\Schema\AbstractSchema;
 use Youshido\GraphQL\Config\Schema\SchemaConfig;
 use Youshido\GraphQL\Type\ListType\ListType;
-use Youshido\GraphQL\Type\NonNullType;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use AppGraphQLBundle\GraphQL\Type\PostType;
 use Youshido\GraphQL\Type\Scalar\StringType;
@@ -19,22 +19,16 @@ class Schema extends AbstractSchema
     {
         $config->getQuery()->addFields([
             'post' => [
-                'type'    => new PostType(),
-                'args'    => [
-                    'id' => [
-                        'type' => new NonNullType(new IntType())
-                    ]
-                ],
-                'resolve' => ['@app_graph_ql.resolver.post', 'find']
-            ],
-            'postList' => [
                 'type'    => new ListType(new PostType()),
                 'args'    => [
+                    'id' => [
+                        'type' => new IntType()
+                    ],
                     'title' => [
                         'type' => new StringType()
                     ]
                 ],
-                'resolve' => ['@app_graph_ql.resolver.post', 'findAll']
+                'resolve' => ['@app_graph_ql.resolver.post', 'resolve']
             ]
         ]);
     }

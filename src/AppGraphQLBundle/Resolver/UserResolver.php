@@ -9,11 +9,13 @@
 namespace AppGraphQLBundle\Resolver;
 
 use AppBundle\Entity\Post;
+use Youshido\GraphQL\Execution\ResolveInfo;
 
 class PostResolver extends DoctrineResolver
 {
-    protected function getAlias()
+
+    public function resolve($source, array $args, ResolveInfo $resolveInfo)
     {
-        return Post::class;
+        return $this->resolveType(Post::class, $args, $resolveInfo);
     }
 }

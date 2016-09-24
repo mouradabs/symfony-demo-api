@@ -1,4 +1,10 @@
 services:
+    app_graph_ql.resolver.doctrine:
+        class: AppGraphQLBundle\Resolver\DoctrineResolver
+        arguments:
+          - "@doctrine.orm.entity_manager"
+        abstract: true
+
     app_graph_ql.resolver.post:
         class: AppGraphQLBundle\Resolver\PostResolver
-        autowire: true
+        parent: app_graph_ql.resolver.doctrine
