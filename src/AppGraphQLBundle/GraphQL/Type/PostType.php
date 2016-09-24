@@ -2,6 +2,7 @@
 
 namespace AppGraphQLBundle\GraphQL\Type;
 use Youshido\GraphQL\Type\Object\AbstractObjectType;
+use Youshido\GraphQL\Type\Scalar\DateTimeType;
 use Youshido\GraphQL\Type\Scalar\StringType;
 
 /**
@@ -15,8 +16,13 @@ class PostType extends AbstractObjectType
     public function build($config)  // implementing an abstract function where you build your type
     {
         $config
-            ->addField('title', new StringType())       // defining "title" field of type String
-            ->addField('summary', new StringType());    // defining "summary" field of type String
+            ->addField('title', new StringType())
+            ->addField('slug', new StringType())
+            ->addField('summary', new StringType())
+            ->addField('content', new StringType())
+            ->addField('authorEmail', new StringType())
+            ->addField('publishedAt', new DateTimeType())
+        ;
     }
 
     public function getName()

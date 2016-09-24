@@ -24,7 +24,7 @@ class Schema extends AbstractSchema
                     'id' => [
                         'type' => new IntType()
                     ],
-                    'title' => [
+                    'slug' => [
                         'type' => new StringType()
                     ]
                 ],
