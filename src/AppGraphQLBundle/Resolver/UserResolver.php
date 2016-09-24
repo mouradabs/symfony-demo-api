@@ -14,7 +14,7 @@ use Youshido\GraphQL\Execution\ResolveInfo;
 
 class UserResolver extends DoctrineResolver
 {
-    protected function getAlias()
+    protected function getEntity() : string
     {
         return User::class;
     }

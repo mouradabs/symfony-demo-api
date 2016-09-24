@@ -12,7 +12,7 @@ use AppBundle\Entity\Post;
 
 class PostResolver extends DoctrineResolver
 {
-    protected function getAlias()
+    protected function getEntity() : string
     {
         return Post::class;
     }

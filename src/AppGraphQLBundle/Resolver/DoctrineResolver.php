@@ -1,9 +1,12 @@
 <?php
 
 namespace AppGraphQLBundle\Resolver;
+use AppBundle\Entity\Comment;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\QueryBuilder;
 use Youshido\GraphQL\Execution\ResolveInfo;
-use Youshido\GraphQL\Field\Field;
+use Youshido\GraphQL\Parser\Ast\Field;
+use Youshido\GraphQL\Type\Scalar\AbstractScalarType;
 
 abstract class DoctrineResolver
 {
@@ -13,6 +16,8 @@ abstract class DoctrineResolver
      */
     private $entityManager;
 
+    const ALIAS = 'e';
+
     public function __construct(
         EntityManagerInterface $entityManager
     )
@@ -20,33 +25,40 @@ abstract class DoctrineResolver
         $this->entityManager = $entityManager;
     }
 
-    abstract protected function getAlias();
+    abstract protected function getEntity() : string;
 
-    protected function getSelectFields($alias, ResolveInfo $info) : array
+    protected function addJoinTypes(QueryBuilder $qb, ResolveInfo $info)
     {
+        $fieldTypeList = $info->getField()
+            ->getType()
+            ->getNamedType()
+            ->getFields();
+
         $fieldList = $info->getFieldASTList();
 
-        $selectList = [];
-
         /** @var Field $field */
+        $joinIndex = 0;
         foreach ($fieldList as $field) {
-            $selectList[] = $alias . '.' . $field->getName();
+            $fieldType = $fieldTypeList[$field->getName()]->getType();
+            if (!$fieldType instanceof AbstractScalarType) {
+                $qb->leftJoin(self::ALIAS . '.' . $field->getName(), 'r_' . $joinIndex)
+                    ->addSelect('r_' . $joinIndex);
+                $joinIndex++;
+            }
         }
-
-        return $selectList;
     }
 
     public function resolve($source, array $args, ResolveInfo $info) : array
     {
         $qb = $this->entityManager->createQueryBuilder();
 
-        $selectFieldList = $this->getSelectFields('e', $info);
+        $qb->select(self::ALIAS)
+            ->from($this->getEntity(), self::ALIAS);
 
-        $qb->select((empty($selectFieldList) ? 'e' : $selectFieldList))
-            ->from($this->getAlias(), 'e');
+        $this->addJoinTypes($qb, $info);
 
         foreach ($args as $key => $value) {
-            $qb->andWhere($qb->expr()->eq('e.' . $key, ':' . $key))
+            $qb->andWhere($qb->expr()->eq(self::ALIAS . '.' . $key, ':' . $key))
                 ->setParameter(':' . $key, $value);
         }
 
