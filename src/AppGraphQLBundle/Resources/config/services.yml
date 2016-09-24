@@ -8,3 +8,7 @@ services:
     app_graph_ql.resolver.post:
         class: AppGraphQLBundle\Resolver\PostResolver
         parent: app_graph_ql.resolver.doctrine
+
+    app_graph_ql.resolver.user:
+        class: AppGraphQLBundle\Resolver\UserResolver
+        parent: app_graph_ql.resolver.doctrine

@@ -29,6 +29,15 @@ class Schema extends AbstractSchema
                     ]
                 ],
                 'resolve' => ['@app_graph_ql.resolver.post', 'resolve']
+            ],
+            'user' => [
+                'type'    => new ListType(new UserType()),
+                'args'    => [
+                    'id' => [
+                        'type' => new IntType()
+                    ]
+                ],
+                'resolve' => ['@app_graph_ql.resolver.user', 'resolve']
             ]
         ]);
     }
