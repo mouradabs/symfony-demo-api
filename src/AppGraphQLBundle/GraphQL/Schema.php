@@ -19,7 +19,7 @@ class Schema extends AbstractSchema
     {
         $config->getQuery()->addFields([
             'post' => [
-                'type'    => new ListType(new PostType()),
+                'type'    => new PostType(),
                 'args'    => [
                     'id' => [
                         'type' => new IntType()
@@ -28,6 +28,10 @@ class Schema extends AbstractSchema
                         'type' => new StringType()
                     ]
                 ],
+                'resolve' => ['@app_graph_ql.resolver.post', 'resolveOne']
+            ],
+            'postList' => [
+                'type'    => new ListType(new PostType()),
                 'resolve' => ['@app_graph_ql.resolver.post', 'resolve']
             ],
             'user' => [
