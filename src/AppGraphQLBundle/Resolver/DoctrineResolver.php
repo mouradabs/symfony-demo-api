@@ -7,6 +7,7 @@ use Doctrine\ORM\QueryBuilder;
 use Youshido\GraphQL\Execution\ResolveInfo;
 use Youshido\GraphQL\Parser\Ast\Field;
 use Youshido\GraphQL\Type\Scalar\AbstractScalarType;
+use Youshido\GraphQL\Type\Scalar\IntType;
 
 abstract class DoctrineResolver
 {
@@ -26,6 +27,32 @@ abstract class DoctrineResolver
     }
 
     abstract protected function getEntity() : string;
+
+    public static function getLimitArgs(array $args = []) : array {
+        return array_merge(
+                $args,
+                [
+                    '__limit' => [
+                        'type' => new IntType()
+                    ],
+                    '__offset' => [
+                        'type' => new IntType()
+                    ]
+                ]
+            );
+    }
+
+    protected function handleSpecialArgs(QueryBuilder $qb, array &$args) {
+        if (isset($args['__limit'])) {
+            $qb->setMaxResults($args['__limit']);
+            unset($args['__limit']);
+        }
+
+        if (isset($args['__offset'])) {
+            $qb->setFirstResult($args['__offset']);
+            unset($args['__offset']);
+        }
+    }
 
     protected function addJoinTypes(QueryBuilder $qb, ResolveInfo $info)
     {
@@ -56,6 +83,8 @@ abstract class DoctrineResolver
             ->from($this->getEntity(), self::ALIAS);
 
         $this->addJoinTypes($qb, $info);
+
+        $this->handleSpecialArgs($qb, $args);
 
         foreach ($args as $key => $value) {
             $qb->andWhere($qb->expr()->eq(self::ALIAS . '.' . $key, ':' . $key))

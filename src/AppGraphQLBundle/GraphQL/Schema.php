@@ -12,6 +12,7 @@ use Youshido\GraphQL\Type\ListType\ListType;
 use Youshido\GraphQL\Type\Scalar\IntType;
 use AppGraphQLBundle\GraphQL\Type\PostType;
 use Youshido\GraphQL\Type\Scalar\StringType;
+use AppGraphQLBundle\Resolver\DoctrineResolver;
 
 class Schema extends AbstractSchema
 {
@@ -32,6 +33,7 @@ class Schema extends AbstractSchema
             ],
             'postList' => [
                 'type'    => new ListType(new PostType()),
+                'args' => DoctrineResolver::getLimitArgs(),
                 'resolve' => ['@app_graph_ql.resolver.post', 'resolve']
             ],
             'user' => [
