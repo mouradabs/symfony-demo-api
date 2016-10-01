@@ -31,6 +31,10 @@ class Schema extends AbstractSchema
                 ],
                 'resolve' => ['@app_graph_ql.resolver.post', 'resolveOne']
             ],
+            "totalPost" => [
+                'type' => new IntType(),
+                'resolve' => ['@app_graph_ql.resolver.post', 'resolveTotal']
+            ],
             'postList' => [
                 'type'    => new ListType(new PostType()),
                 'args' => DoctrineResolver::getLimitArgs(),

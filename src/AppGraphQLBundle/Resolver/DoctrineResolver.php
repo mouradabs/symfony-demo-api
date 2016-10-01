@@ -56,10 +56,15 @@ abstract class DoctrineResolver
 
     protected function addJoinTypes(QueryBuilder $qb, ResolveInfo $info)
     {
-        $fieldTypeList = $info->getField()
+        $type = $info->getField()
             ->getType()
-            ->getNamedType()
-            ->getFields();
+            ->getNamedType();
+
+        if ($type instanceof AbstractScalarType) {
+            return;
+        }
+
+        $fieldTypeList = $type->getFields();
 
         $fieldList = $info->getFieldASTList();
 
@@ -73,6 +78,18 @@ abstract class DoctrineResolver
                 $joinIndex++;
             }
         }
+    }
+
+    public function resolveTotal() : int
+    {
+        $qb = $this->entityManager->createQueryBuilder();
+
+        $qb->select(sprintf('count(%s)', self::ALIAS))
+            ->from($this->getEntity(), self::ALIAS);
+
+        $count = (int)$qb->getQuery()->getSingleScalarResult();
+
+        return $count;
     }
 
     public function resolve($source, array $args, ResolveInfo $info) : array
