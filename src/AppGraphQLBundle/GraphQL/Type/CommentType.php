@@ -17,6 +17,7 @@ class CommentType extends AbstractObjectType
     public function build($config)
     {
         $config
+            ->addField('post', new PostType())
             ->addField('content', new StringType())
             ->addField('authorEmail', new StringType())
             ->addField('publishedAt', new DateTimeType())

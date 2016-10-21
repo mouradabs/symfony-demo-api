@@ -1,6 +1,7 @@
 <?php
 
 namespace AppGraphQLBundle\GraphQL\Type;
+use AppBundle\Entity\Comment;
 use Youshido\GraphQL\Type\ListType\ListType;
 use Youshido\GraphQL\Type\Object\AbstractObjectType;
 use Youshido\GraphQL\Type\Scalar\DateTimeType;
@@ -23,7 +24,7 @@ class PostType extends AbstractObjectType
             ->addField('content', new StringType())
             ->addField('authorEmail', new StringType())
             ->addField('publishedAt', new DateTimeType())
-            ->addField('comments', new ListType(new CommentType()))
+            ->addField('comments', new CommentListType())
         ;
     }
 

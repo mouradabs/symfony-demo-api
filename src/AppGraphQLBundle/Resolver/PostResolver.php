@@ -14,7 +14,7 @@ use Youshido\GraphQL\Execution\ResolveInfo;
 class PostResolver extends DoctrineResolver
 {
 
-    public function resolveOne($source, array $args, ResolveInfo $info) : array {
+    public function resolveOne($source, array $args, ResolveInfo $info) : Post {
         return parent::resolve($source, $args, $info)[0];
     }
 

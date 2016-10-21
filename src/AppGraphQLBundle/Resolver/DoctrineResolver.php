@@ -92,7 +92,7 @@ abstract class DoctrineResolver
         return $count;
     }
 
-    public function resolve($source, array $args, ResolveInfo $info) : array
+    public function resolve($source, array $args, ResolveInfo $info)
     {
         $qb = $this->entityManager->createQueryBuilder();
 
@@ -108,8 +108,6 @@ abstract class DoctrineResolver
                 ->setParameter(':' . $key, $value);
         }
 
-        $results = $qb->getQuery()->getArrayResult();
-
-        return $results;
+        return $qb->getQuery()->getResult();
     }
 }
