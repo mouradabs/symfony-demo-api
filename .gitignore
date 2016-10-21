@@ -17,3 +17,4 @@
 !bin/symfony_requirements
 /vendor/
 /web/bundles/
+docker-compose.override.yml
