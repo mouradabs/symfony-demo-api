@@ -4,12 +4,10 @@ Symfony Demo Application
 The "Symfony Demo Application" is a reference application created to show how
 to develop Symfony applications following the recommended best practices.
 
-[![Build Status](https://travis-ci.org/symfony/symfony-demo.svg?branch=master)](https://travis-ci.org/symfony/symfony-demo)
-
 Requirements
 ------------
 
-  * PHP 5.5.9 or higher;
+  * PHP 7.0 or higher;
   * PDO-SQLite PHP extension enabled;
   * and the [usual Symfony application requirements](http://symfony.com/doc/current/reference/requirements.html).
 
