@@ -1,8 +1,7 @@
 version: '2'
 services:
   web:
+    container_name: symfony_graphql
     build: .
-    ports:
-      - 8080:80
     volumes:
       - .:/var/www
