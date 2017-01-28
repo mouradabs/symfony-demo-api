@@ -14,16 +14,16 @@ security:
     # http://symfony.com/doc/current/book/security.html#firewalls-authentication
     firewalls:
         login:
-            pattern:  ^/api/login
+            pattern:  ^/jwt/login
             stateless: true
             anonymous: true
             form_login:
-                check_path:               /api/login_check
+                check_path:               /jwt/login_check
                 success_handler:          lexik_jwt_authentication.handler.authentication_success
                 failure_handler:          lexik_jwt_authentication.handler.authentication_failure
                 require_previous_session: false
         api:
-            pattern:   ^/api
+            pattern:   ^/graphql
             stateless: true
             guard:
                 authenticators:
@@ -58,5 +58,5 @@ security:
         # this is a catch-all for the admin area
         # additional security lives in the controllers
         - { path: '^/(%app_locales%)/admin', roles: ROLE_ADMIN }
-        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/jwt/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/graphql,       roles: ROLE_USER }
