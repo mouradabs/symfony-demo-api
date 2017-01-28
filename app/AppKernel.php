@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new CodeExplorerBundle\CodeExplorerBundle(),
             new AppBundle\AppBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
 
             new Youshido\GraphQLBundle\GraphQLBundle(),
             new AppGraphQLBundle\AppGraphQLBundle(),

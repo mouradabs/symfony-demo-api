@@ -28,3 +28,8 @@ homepage:
 
 graphql:
     resource: "@GraphQLBundle/Controller/"
+    prefix: /api
+
+# JWT
+api_login_check:
+    path: /api/login_check
