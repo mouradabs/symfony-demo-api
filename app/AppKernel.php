@@ -25,6 +25,8 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
+            new ApiPlatform\Core\Bridge\Symfony\Bundle\ApiPlatformBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
 
             new Youshido\GraphQLBundle\GraphQLBundle(),
             new AppGraphQLBundle\AppGraphQLBundle(),

@@ -33,7 +33,9 @@
         "twig/twig": "^1.28",
         "white-october/pagerfanta-bundle": "^1.0",
         "youshido/graphql-bundle": "^1.1",
-        "lexik/jwt-authentication-bundle": "^2.1"
+        "lexik/jwt-authentication-bundle": "^2.1",
+        "api-platform/core": "^2.0",
+        "nelmio/cors-bundle": "^1.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

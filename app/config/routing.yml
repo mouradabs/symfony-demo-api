@@ -32,3 +32,8 @@ graphql:
 # JWT
 jwt_login_check:
     path: /jwt/login_check
+
+api:
+    resource: '.'
+    type:     'api_platform'
+    prefix:   '/api' # Optional
