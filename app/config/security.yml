@@ -17,11 +17,13 @@ security:
             pattern:  ^/jwt/login
             stateless: true
             anonymous: true
-            form_login:
-                check_path:               /jwt/login_check
+            json_login:
+                check_path: /jwt/login_check
+                username_path: _username
+                password_path: _password
                 success_handler:          lexik_jwt_authentication.handler.authentication_success
                 failure_handler:          lexik_jwt_authentication.handler.authentication_failure
-                require_previous_session: false
+
         graphql:
             pattern:   ^/graphql|api
             stateless: true
