@@ -1,0 +1,12 @@
+AppBundle\Entity\Post:
+    attributes:
+        id:
+            groups: ['post_list']
+        title:
+            groups: ['post_list', 'post_read']
+        summary:
+            groups: ['post_list']
+        content:
+            groups: ['post_read']
+        comments:
+            groups: ['post_read']

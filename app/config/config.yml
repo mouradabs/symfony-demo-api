@@ -50,7 +50,8 @@ framework:
     fragments:       ~
     http_method_override: true
     assets: ~
-
+    serializer:
+        enabled: true
 # Twig Configuration (used for rendering application templates)
 twig:
     debug:            "%kernel.debug%"

@@ -1,2 +1,15 @@
 resources:
-    AppBundle\Entity\Post: ~
+    AppBundle\Entity\Post:
+          itemOperations:
+              get:
+                  method: 'GET'
+                  normalization_context:
+                      groups: ['post_read']
+          collectionOperations:
+              get:
+                  method: 'GET'
+                  normalization_context:
+                      groups: ['post_list']
+    AppBundle\Entity\Comment:
+        itemOperations: {}
+        collectionOperations: {}

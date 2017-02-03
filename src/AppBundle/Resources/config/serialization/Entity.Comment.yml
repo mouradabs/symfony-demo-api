@@ -1,0 +1,10 @@
+AppBundle\Entity\Comment:
+  attributes:
+      id:
+        groups: ['comment_read']
+      content:
+        groups: ['comment_read', 'post_read']
+      authorEmail:
+        groups: ['post_read']
+      publishedAt:
+        groups: ['post_read']
