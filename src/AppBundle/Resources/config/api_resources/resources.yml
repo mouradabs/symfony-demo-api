@@ -11,5 +11,13 @@ resources:
                   normalization_context:
                       groups: ['post_list']
     AppBundle\Entity\Comment:
-        itemOperations: {}
-        collectionOperations: {}
+        itemOperations:
+            get:
+                method: 'GET'
+                normalization_context:
+                    groups: ['comment_read']
+        collectionOperations:
+            post:
+              method: 'POST'
+              normalization_context: ['comment_read']
+              denormalization_context: ['comment_create']

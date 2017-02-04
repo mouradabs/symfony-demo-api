@@ -1,7 +1,7 @@
 AppBundle\Entity\Post:
     attributes:
         id:
-            groups: ['post_list']
+            groups: ['post_list', 'post_read']
         title:
             groups: ['post_list', 'post_read']
         summary:

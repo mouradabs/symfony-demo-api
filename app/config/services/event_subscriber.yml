@@ -1,0 +1,6 @@
+services:
+    app.event_subscriber.comment:
+        class: AppBundle\EventSubscriber\CommentSubscriber
+        autowire: true
+        tags:
+          - { name: kernel.event_subscriber }

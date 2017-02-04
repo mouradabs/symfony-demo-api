@@ -39,6 +39,7 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $post;
 
@@ -57,6 +58,7 @@ class Comment
     /**
      * @ORM\Column(type="string")
      * @Assert\Email()
+     * @Assert\NotBlank()
      */
     private $authorEmail;
 
