@@ -19,5 +19,7 @@ resources:
         collectionOperations:
             post:
               method: 'POST'
-              normalization_context: ['comment_read']
-              denormalization_context: ['comment_create']
+              normalization_context:
+                  groups: ['comment_read']
+              denormalization_context:
+                  groups: ['comment_create']

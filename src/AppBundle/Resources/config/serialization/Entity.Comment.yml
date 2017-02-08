@@ -5,8 +5,8 @@ AppBundle\Entity\Comment:
       content:
         groups: ['comment_read', 'comment_create', 'post_read']
       authorEmail:
-        groups: ['post_read']
+        groups: ['comment_read', 'post_read']
       publishedAt:
-        groups: ['post_read']
+        groups: ['comment_read', 'post_read']
       post:
         groups: ['comment_create']
