@@ -12,6 +12,8 @@
 /var/sessions/*
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
+!var/jwt
+!var/jwt/.gitignorep
 /bin/*
 !bin/console
 !bin/symfony_requirements
