@@ -5,3 +5,5 @@ services:
     build: .
     volumes:
       - .:/var/www
+    environment:
+      SYMFONY_ENV: dev

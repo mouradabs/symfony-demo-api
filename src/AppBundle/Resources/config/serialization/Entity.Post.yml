@@ -4,8 +4,12 @@ AppBundle\Entity\Post:
             groups: ['post_list', 'post_read']
         title:
             groups: ['post_list', 'post_read']
+        authorEmail:
+            groups: ['post_list', "post_read"]
+        publishedAt:
+            groups: ['post_list', "post_read"]
         summary:
-            groups: ['post_list']
+            groups: ['post_list', "post_read"]
         content:
             groups: ['post_read']
         comments:

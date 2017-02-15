@@ -1,0 +1,10 @@
+AppBundle\Entity\User:
+    attributes:
+        id:
+            groups: ['user_me']
+        username:
+            groups: ['user_me']
+        email:
+            groups: ['user_me']
+        roles:
+            groups: ['user_me']
