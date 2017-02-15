@@ -27,8 +27,4 @@ resources:
         itemOperations:
             get:
                 method: 'GET'
-#            me:
-#                route_name: 'user_me'
-#                normalization_context:
-#                    groups: ['user_me']
         collectionOperations: {}
